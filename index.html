@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para alguien especial ❤️</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { 
+            background-color: #fff1f2; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            height: 100vh; 
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .container { 
+            text-align: center; 
+            background: white; 
+            padding: 2.5rem; 
+            border-radius: 30px; 
+            box-shadow: 0 10px 25px rgba(244, 63, 94, 0.2);
+            max-width: 400px;
+            width: 90%;
+        }
+        #noBtn {
+            transition: all 0.2s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="main-card">
+        <img id="image-display" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJueGZueGZueGZueGZueGZueGZueGZueGZueGZueGZueGZueGZueCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/cLS1cfxvGOPVpf9g3y/giphy.gif" class="mx-auto w-48 mb-4">
+        
+        <h1 id="question" class="text-2xl font-bold text-rose-600 mb-6">¿Quieres ser mi San Valentín? ❤️</h1>
+        
+        <div class="flex justify-center items-center gap-4">
+            <button id="yesBtn" class="bg-rose-500 text-white px-8 py-3 rounded-full font-bold shadow-lg hover:bg-rose-600 transition-transform hover:scale-110" onclick="accepted()">SÍ</button>
+            <button id="noBtn" class="bg-gray-400 text-white px-8 py-3 rounded-full font-bold shadow-lg" onmouseover="moveButton()" onclick="moveButton()">No</button>
+        </div>
+    </div>
+
+    <script>
+        let phrases = [
+            "¿Segurísima? 🥺",
+            "Piénsalo otra vez... 🌹",
+            "¡Ándale, no digas que no! 🧸",
+            "Te tengo una sorpresa... ✨",
+            "Me vas a poner triste 💔",
+            "¡Dime que sí! 🥰"
+        ];
+        let count = 0;
+
+        function moveButton() {
+            const btn = document.getElementById('noBtn');
+            const yesBtn = document.getElementById('yesBtn');
+            
+            // Hace que el botón "No" se mueva a lugares aleatorios
+            const x = Math.random() * (window.innerWidth - btn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - btn.offsetHeight);
+            
+            btn.style.position = 'fixed';
+            btn.style.left = x + 'px';
+            btn.style.top = y + 'px';
+            
+            // Cambia el texto del botón No
+            if(count < phrases.length) {
+                btn.innerText = phrases[count];
+                count++;
+            }
+
+            // Hace que el botón "Sí" crezca para que sea más fácil darle click
+            let currentSize = parseFloat(window.getComputedStyle(yesBtn).fontSize);
+            yesBtn.style.fontSize = (currentSize + 12) + 'px';
+            yesBtn.style.padding = (parseFloat(window.getComputedStyle(yesBtn).paddingLeft) + 10) + 'px';
+        }
+
+        function accepted() {
+            document.getElementById('main-card').innerHTML = `
+                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJueGZueGZueGZueGZueGZueGZueGZueGZueGZueGZueGZueGZueCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/KztT2c4u8mYYUiMKdJ/giphy.gif" class="mx-auto w-48">
+                <h1 class="text-3xl font-bold text-rose-600 mt-4">¡SABÍA QUE DIRÍAS QUE SÍ! 😍</h1>
+                <p class="mt-4 text-gray-700 font-medium">Prepárate, que este 14 será especial. ❤️</p>
+                <p class="text-sm text-gray-400 mt-2"> Sé que trabajas duro, pero prepárate para desconectarte ese día, porque la vamos a pasar hermoso. Me encanta que la vida nos vuelva a encontrar juntos un 14 más. ✨</p>
+            `;
+        }
+    </script>
+</body>
+</html>
